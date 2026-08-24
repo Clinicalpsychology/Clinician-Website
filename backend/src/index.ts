@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import winston from 'winston';
+import psychologistRoutes from './routes/psychologists';
 
 dotenv.config();
 
@@ -43,6 +44,7 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use('/api/psychologists', psychologistRoutes);
 
 // Health Check Endpoint
 app.get('/api/health', (req: Request, res: Response) => {

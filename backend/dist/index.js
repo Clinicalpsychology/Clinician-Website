@@ -9,6 +9,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const winston_1 = __importDefault(require("winston"));
+const psychologists_1 = __importDefault(require("./routes/psychologists"));
 dotenv_1.default.config();
 // Initialize Express
 const app = (0, express_1.default)();
@@ -41,6 +42,7 @@ const limiter = (0, express_rate_limit_1.default)({
 app.use(limiter);
 app.use(express_1.default.json({ limit: '10mb' }));
 app.use(express_1.default.urlencoded({ limit: '10mb', extended: true }));
+app.use('/api/psychologists', psychologists_1.default);
 // Health Check Endpoint
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
