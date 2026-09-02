@@ -72,6 +72,7 @@ app.get('/', (req: Request, res: Response) => {
 // Error Handling Middleware
 app.use((err: any, req: Request, res: Response) => {
   logger.error(err.message);
+  if (res.headersSent) return;
   res.status(err.status || 500).json({
     error: {
       message: err.message || 'Internal Server Error',
