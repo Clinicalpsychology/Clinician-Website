@@ -44,6 +44,7 @@ export default function Home() {
           </form>
           {submitted && <p className="search-feedback" role="status">{matches.length ? `Showing ${matches.length} matching professionals below.` : "No exact matches yet. Try a broader search."}</p>}
           <div className="hero-note"><span className="avatar-stack" aria-hidden="true"><i /><i /><i /></span><span>Join 12,000+ people taking their next step</span></div>
+          <div className="hero-tools"><a href="/professionals/apply">Professional registration <span aria-hidden="true">↗</span></a><a href="/admin">Admin dashboard <span aria-hidden="true">↗</span></a></div>
         </div>
         <div className="hero-art" aria-hidden="true"><div className="art-sun" /><div className="art-line line-one" /><div className="art-line line-two" /><div className="art-leaf leaf-one" /><div className="art-leaf leaf-two" /><span className="art-caption">A gentler place to begin</span></div>
       </section>
