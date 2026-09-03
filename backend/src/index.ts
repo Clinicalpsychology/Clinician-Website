@@ -70,7 +70,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // Error Handling Middleware
-app.use((err: any, req: Request, res: Response) => {
+app.use((err: any, req: Request, res: Response, next: express.NextFunction) => {
   logger.error(err.message);
   if (res.headersSent) return;
   res.status(err.status || 500).json({
