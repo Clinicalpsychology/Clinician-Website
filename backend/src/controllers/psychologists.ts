@@ -108,3 +108,32 @@ export const listPsychologists = async (req: Request, res: Response): Promise<vo
     pagination: { total, page, limit, pages: Math.ceil(total / limit) },
   });
 };
+
+export const getPsychologist = async (req: Request, res: Response): Promise<void> => {
+  const psychologistId = Number(req.params.id);
+  if (!Number.isInteger(psychologistId) || psychologistId < 1) {
+    sendError(res, 'Psychologist id must be a positive integer', 400, 'VALIDATION_ERROR');
+    return;
+  }
+
+  const result = await database.raw(`
+    SELECT p.id, p.license_verified, p.license_verification_date, p.bio,
+      p.years_experience, p.hourly_rate, p.accepting_new_clients,
+      json_build_object('id', u.id, 'first_name', u.first_name, 'last_name', u.last_name, 'profile_picture_url', u.profile_picture_url) AS user,
+      COALESCE((SELECT json_agg(DISTINCT ps.specialization ORDER BY ps.specialization) FROM psychologist_specializations ps WHERE ps.psychologist_id = p.id), '[]') AS specializations,
+      COALESCE((SELECT json_agg(jsonb_build_object('id', s.id, 'service_name', s.service_name, 'service_description', s.service_description, 'service_type', s.service_type, 'delivery_method', s.delivery_method, 'price', s.price) ORDER BY s.id) FROM psychologist_services s WHERE s.psychologist_id = p.id), '[]') AS services,
+      COALESCE((SELECT json_agg(DISTINCT pl.language ORDER BY pl.language) FROM psychologist_languages pl WHERE pl.psychologist_id = p.id), '[]') AS languages,
+      COALESCE((SELECT json_agg(jsonb_build_object('id', cl.id, 'clinic_name', cl.clinic_name, 'street_address', cl.street_address, 'city', cl.city, 'state_province', cl.state_province, 'country', cl.country, 'is_primary', cl.is_primary) ORDER BY cl.is_primary DESC, cl.id) FROM clinic_locations cl WHERE cl.psychologist_id = p.id), '[]') AS clinic_locations,
+      COALESCE((SELECT json_agg(jsonb_build_object('id', e.id, 'institution_name', e.institution_name, 'degree', e.degree, 'field_of_study', e.field_of_study, 'graduation_year', e.graduation_year) ORDER BY e.graduation_year DESC NULLS LAST, e.id) FROM psychologist_education e WHERE e.psychologist_id = p.id), '[]') AS education,
+      ROUND((SELECT AVG(r.rating)::numeric FROM reviews r WHERE r.psychologist_id = p.id AND r.is_published = TRUE), 2) AS average_rating,
+      (SELECT COUNT(*)::int FROM reviews r WHERE r.psychologist_id = p.id AND r.is_published = TRUE) AS total_reviews
+    FROM psychologists p JOIN users u ON u.id = p.user_id
+    WHERE p.id = ? AND u.is_active = TRUE
+  `, [psychologistId]);
+
+  if (!result.rows[0]) {
+    sendError(res, 'Psychologist not found', 404, 'NOT_FOUND');
+    return;
+  }
+  sendSuccess(res, result.rows[0]);
+};
