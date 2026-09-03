@@ -58,6 +58,8 @@ export default function DirectoryPage() {
     }
   }
 
+  // Load the initial directory state once; later searches are user-triggered.
+  // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
   useEffect(() => { void loadProfessionals(); }, []);
 
   return (
