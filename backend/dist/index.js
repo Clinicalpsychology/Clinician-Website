@@ -65,8 +65,10 @@ app.get('/', (req, res) => {
     });
 });
 // Error Handling Middleware
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
     logger.error(err.message);
+    if (res.headersSent)
+        return;
     res.status(err.status || 500).json({
         error: {
             message: err.message || 'Internal Server Error',

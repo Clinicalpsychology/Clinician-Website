@@ -43,7 +43,7 @@ const listPsychologists = async (req, res) => {
     const bindings = [];
     const addBinding = (value) => {
         bindings.push(value);
-        return `$${bindings.length}`;
+        return '?';
     };
     if (search) {
         const searchParam = addBinding(`%${search}%`);
@@ -93,7 +93,7 @@ const listPsychologists = async (req, res) => {
         'profile_picture_url', u.profile_picture_url
       ) AS user,
       COALESCE((SELECT json_agg(DISTINCT ps.specialization ORDER BY ps.specialization) FROM psychologist_specializations ps WHERE ps.psychologist_id = p.id), '[]') AS specializations,
-      COALESCE((SELECT json_agg(DISTINCT jsonb_build_object('id', service.id, 'service_name', service.service_name, 'service_type', service.service_type, 'delivery_method', service.delivery_method, 'price', service.price) ORDER BY service.id) FROM psychologist_services service WHERE service.psychologist_id = p.id), '[]') AS services,
+      COALESCE((SELECT json_agg(jsonb_build_object('id', service.id, 'service_name', service.service_name, 'service_type', service.service_type, 'delivery_method', service.delivery_method, 'price', service.price) ORDER BY service.id) FROM psychologist_services service WHERE service.psychologist_id = p.id), '[]') AS services,
       COALESCE((SELECT json_agg(DISTINCT pl.language ORDER BY pl.language) FROM psychologist_languages pl WHERE pl.psychologist_id = p.id), '[]') AS languages,
       COALESCE((SELECT json_agg(jsonb_build_object('id', cl.id, 'clinic_name', cl.clinic_name, 'city', cl.city, 'state_province', cl.state_province, 'country', cl.country, 'is_primary', cl.is_primary) ORDER BY cl.is_primary DESC, cl.id) FROM clinic_locations cl WHERE cl.psychologist_id = p.id), '[]') AS clinic_locations,
       ROUND((SELECT AVG(r.rating)::numeric FROM reviews r WHERE r.psychologist_id = p.id AND r.is_published = TRUE), 2) AS average_rating,
@@ -102,7 +102,7 @@ const listPsychologists = async (req, res) => {
     JOIN users u ON u.id = p.user_id
     WHERE ${whereClause}
     ORDER BY p.license_verified DESC, p.created_at DESC, p.id DESC
-    LIMIT $${bindings.length + 1} OFFSET $${bindings.length + 2}
+    LIMIT ? OFFSET ?
   `, pageBindings);
     (0, response_1.sendSuccess)(res, {
         psychologists: result.rows,
