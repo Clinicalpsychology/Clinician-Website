@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const psychologists = [
   { name: "Dr. Leila Morgan", specialty: "Anxiety & stress", location: "Brooklyn, NY", image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=85" },
@@ -9,12 +10,14 @@ const psychologists = [
 ];
 
 export default function Home() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitted(true);
+    router.push(`/directory${search.trim() ? `?search=${encodeURIComponent(search.trim())}` : ""}`);
   }
 
   const matches = search
@@ -26,7 +29,7 @@ export default function Home() {
       <section className="hero-shell">
         <nav className="site-nav" aria-label="Main navigation">
           <a className="brand" href="#top" aria-label="Mendwell home"><span className="brand-mark">+</span> mendwell</a>
-          <div className="nav-links"><a href="#directory">Find a psychologist</a><a href="#how-it-works">How it works</a><a href="#about">About us</a></div>
+          <div className="nav-links"><a href="/directory">Find a psychologist</a><a href="#how-it-works">How it works</a><a href="#about">About us</a></div>
           <a className="provider-link" href="#for-providers">For professionals <span aria-hidden="true">↗</span></a>
         </nav>
 
@@ -47,7 +50,7 @@ export default function Home() {
 
       <section className="trust-strip" id="how-it-works"><div><strong>12k+</strong><span>people supported</span></div><div><strong>2,400</strong><span>licensed professionals</span></div><div><strong>4.9/5</strong><span>average experience</span></div><p>“The first step felt<br /><em>lighter</em> than I expected.”</p></section>
 
-      <section className="directory-section" id="directory"><div className="section-heading"><div><p className="eyebrow">A considered match</p><h2>Professionals<br /><em>you can trust.</em></h2></div><a className="text-link" href="#directory">Explore the directory <span aria-hidden="true">↗</span></a></div><div className="profile-grid">{matches.map((psychologist) => <article className="profile-card" key={psychologist.name}><div className="profile-image" style={{ backgroundImage: `url(${psychologist.image})` }}><span className="verified">✓ Verified</span></div><div className="profile-body"><p className="specialty">{psychologist.specialty}</p><h3>{psychologist.name}</h3><p className="location">⌖ {psychologist.location} · Online available</p><a href="#profile">View profile <span aria-hidden="true">→</span></a></div></article>)}</div></section>
+      <section className="directory-section" id="directory"><div className="section-heading"><div><p className="eyebrow">A considered match</p><h2>Professionals<br /><em>you can trust.</em></h2></div><a className="text-link" href="/directory">Explore the directory <span aria-hidden="true">↗</span></a></div><div className="profile-grid">{matches.map((psychologist) => <article className="profile-card" key={psychologist.name}><div className="profile-image" style={{ backgroundImage: `url(${psychologist.image})` }}><span className="verified">✓ Verified</span></div><div className="profile-body"><p className="specialty">{psychologist.specialty}</p><h3>{psychologist.name}</h3><p className="location">⌖ {psychologist.location} · Online available</p><a href="/directory">View profile <span aria-hidden="true">→</span></a></div></article>)}</div></section>
 
       <section className="closing-section" id="about"><p className="eyebrow">You don&apos;t have to figure it out alone</p><h2>There is room for<br /><em>how you feel.</em></h2><a className="dark-button" href="#directory">Find your match <span aria-hidden="true">→</span></a></section>
     </main>
