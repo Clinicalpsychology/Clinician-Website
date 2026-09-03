@@ -30,7 +30,7 @@ export default function Home() {
         <nav className="site-nav" aria-label="Main navigation">
           <a className="brand" href="#top" aria-label="Mendwell home"><span className="brand-mark">+</span> mendwell</a>
           <div className="nav-links"><a href="/directory">Find a psychologist</a><a href="#how-it-works">How it works</a><a href="#about">About us</a></div>
-          <a className="provider-link" href="#for-providers">For professionals <span aria-hidden="true">↗</span></a>
+          <a className="provider-link" href="/account">My care space <span aria-hidden="true">↗</span></a>
         </nav>
 
         <div className="hero-content" id="top">

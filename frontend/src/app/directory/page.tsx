@@ -64,7 +64,7 @@ export default function DirectoryPage() {
     <main className="directory-page">
       <nav className="site-nav directory-nav" aria-label="Main navigation">
         <a className="brand" href="/"><span className="brand-mark">+</span> mendwell</a>
-        <a className="provider-link" href="/#about">About us <span aria-hidden="true">↗</span></a>
+        <a className="provider-link" href="/account">My care space <span aria-hidden="true">↗</span></a>
       </nav>
       <section className="directory-intro">
         <p className="eyebrow">A considered match</p>
