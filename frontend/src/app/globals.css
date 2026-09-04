@@ -57,4 +57,14 @@ h1, h2 { font-size: clamp(55px, 7vw, 95px); font-weight: 400; letter-spacing: -3
 .whatsapp-fab:hover { background: #146b49; transform: translateY(-3px); }
 .whatsapp-fab span { transform: rotate(-18deg); }
 @media (max-width: 760px) { .whatsapp-fab { bottom: 18px; height: 52px; right: 18px; width: 52px; } }
+.account-flip-card { display: block; min-height: 500px; perspective: 1400px; }
+.account-flip-inner { height: 100%; min-height: 500px; position: relative; transform-style: preserve-3d; }
+.account-form-face, .account-side-face { backface-visibility: hidden; position: absolute; }
+.account-form-face { background: var(--cream); height: 100%; left: 0; top: 0; transition: transform .65s cubic-bezier(.2,.7,.2,1), opacity .2s linear .2s; width: 55%; z-index: 2; }
+.account-login-face { transform: rotateY(0deg); transform-origin: right center; }
+.account-signup-face { transform: rotateY(180deg); transform-origin: right center; }
+.account-flip-card.is-signup .account-login-face { opacity: 0; transform: rotateY(-180deg); z-index: 1; }
+.account-flip-card.is-signup .account-signup-face { opacity: 1; transform: rotateY(0deg); z-index: 2; }
+.account-side-face { height: 100%; right: 0; top: 0; width: 45%; z-index: 3; }
+@media (max-width: 760px) { .account-flip-card { min-height: 0; perspective: none; }.account-flip-inner { min-height: 0; }.account-form-face, .account-side-face { position: relative; width: 100%; }.account-form-face { height: auto; min-height: 450px; transition: none; }.account-signup-face { display: none; transform: none; }.account-flip-card.is-signup .account-login-face { display: none; transform: none; }.account-flip-card.is-signup .account-signup-face { display: block; transform: none; }.account-side-face { height: auto; min-height: 275px; }.account-flip-card.is-signup .account-side-face { display: none; } }
 @media (max-width: 760px) { .about-section { display: block; padding: 75px 20px 85px; }.about-section h2 { font-size: 49px; }.about-copy { padding-top: 28px; }.site-footer { display: block; padding: 55px 20px 60px; }.footer-column { border-top: 1px solid rgba(247,245,239,.22); margin-top: 32px; padding-top: 24px; } }
