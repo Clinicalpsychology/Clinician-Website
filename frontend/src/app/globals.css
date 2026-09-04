@@ -67,4 +67,7 @@ h1, h2 { font-size: clamp(55px, 7vw, 95px); font-weight: 400; letter-spacing: -3
 .account-flip-card.is-signup .account-signup-face { opacity: 1; transform: rotateY(0deg); z-index: 2; }
 .account-side-face { height: 100%; right: 0; top: 0; width: 45%; z-index: 3; }
 @media (max-width: 760px) { .account-flip-card { min-height: 0; perspective: none; }.account-flip-inner { min-height: 0; }.account-form-face, .account-side-face { position: relative; width: 100%; }.account-form-face { height: auto; min-height: 450px; transition: none; }.account-signup-face { display: none; transform: none; }.account-flip-card.is-signup .account-login-face { display: none; transform: none; }.account-flip-card.is-signup .account-signup-face { display: block; transform: none; }.account-side-face { height: auto; min-height: 275px; }.account-flip-card.is-signup .account-side-face { display: none; } }
+.account-flip-card, .account-flip-inner { min-height: 620px; }
+.account-form-face { overflow: visible; }
+@media (max-width: 760px) { .account-flip-card, .account-flip-inner { min-height: 0; } }
 @media (max-width: 760px) { .about-section { display: block; padding: 75px 20px 85px; }.about-section h2 { font-size: 49px; }.about-copy { padding-top: 28px; }.site-footer { display: block; padding: 55px 20px 60px; }.footer-column { border-top: 1px solid rgba(247,245,239,.22); margin-top: 32px; padding-top: 24px; } }
