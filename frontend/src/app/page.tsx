@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const psychologists = [
   { name: "Dr. Aline Mukamana", specialty: "Anxiety & stress", location: "Kigali, Rwanda", image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=85", imageClass: "profile-image-white" },
   { name: "Dr. Samuel Niyonzima", specialty: "Trauma & recovery", location: "Kigali, Rwanda", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=85", imageClass: "profile-image-male" },
-  { name: "Dr. Wanjiku Kamau", specialty: "Couples therapy", location: "Nairobi, Kenya", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=85", imageClass: "profile-image-white" },
+  { name: "Dr. Samson Alosi", specialty: "Couples therapy", location: "Nairobi, Kenya", image: "/frontend/public/images/SAM-Headshot.png", imageClass: "profile-image-white" },
 ];
 
 export default function Home() {
