@@ -29,7 +29,7 @@ export default function Home() {
       <section className="hero-shell">
         <nav className="site-nav" aria-label="Main navigation">
           <a className="brand" href="#top" aria-label="Mendwell home"><span className="brand-mark">+</span> mendwell</a>
-          <div className="nav-links"><a href="/directory">Find a psychologist</a><a href="#how-it-works">How it works</a><a href="#about">About us</a><a href="/account">User accounts</a></div>
+          <div className="nav-links"><a href="/directory">Find a psychologist</a><a href="/how-it-works">How it works</a><a href="#about">About us</a><a href="/account">User accounts</a></div>
           <a className="provider-link" href="/professionals/apply">Professional registration <span aria-hidden="true">↗</span></a>
         </nav>
 

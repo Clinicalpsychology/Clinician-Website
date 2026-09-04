@@ -18,12 +18,14 @@ body {
 * { box-sizing: border-box; }
 a { color: inherit; text-decoration: none; }
 .hero-shell { background: var(--sage); min-height: 680px; overflow: hidden; position: relative; }
-.site-nav { align-items: center; display: flex; justify-content: space-between; margin: auto; max-width: 1240px; padding: 28px 32px; position: relative; z-index: 2; }
+.site-nav { align-items: center; backdrop-filter: blur(18px); background: rgba(247,245,239,.68); border: 1px solid rgba(255,255,255,.72); border-radius: 999px; box-shadow: 0 12px 30px rgba(23,59,54,.08); display: flex; justify-content: space-between; margin: 18px auto; max-width: 1180px; padding: 10px 14px 10px 20px; position: relative; z-index: 2; }
 .brand { align-items: center; display: flex; font-family: var(--font-geist-sans), sans-serif; font-size: 21px; font-weight: 700; letter-spacing: 0; }
 .brand-mark { align-items: center; background: var(--coral); border-radius: 50%; color: white; display: inline-flex; font-size: 22px; height: 27px; justify-content: center; margin-right: 8px; width: 27px; }
-.nav-links { display: flex; font-family: var(--font-geist-sans), sans-serif; font-size: 13px; gap: 29px; margin-left: 110px; }
+.nav-links { display: flex; font-family: var(--font-geist-sans), sans-serif; font-size: 12px; gap: 4px; margin-left: auto; margin-right: 22px; }
+.nav-links a { border-radius: 999px; padding: 9px 12px; transition: background .2s, color .2s; }.nav-links a:hover, .nav-links .nav-current { background: rgba(220,233,223,.8); color: var(--ink); }
 .nav-links a, .provider-link { opacity: .75; transition: opacity .2s; }.nav-links a:hover, .provider-link:hover { opacity: 1; }
 .provider-link { font-family: var(--font-geist-sans), sans-serif; font-size: 13px; }
+.provider-link { background: var(--ink); border-radius: 999px; color: var(--cream); opacity: 1; padding: 10px 14px; }.provider-link:hover { background: #28564e; opacity: 1; }
 .hero-content { margin: auto; max-width: 1240px; padding: 78px 32px 96px; position: relative; z-index: 1; }
 .eyebrow { color: var(--coral); font-family: var(--font-geist-sans), sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .11em; margin: 0 0 21px; text-transform: uppercase; }
 h1, h2 { font-size: clamp(55px, 7vw, 95px); font-weight: 400; letter-spacing: -3px; line-height: .91; margin: 0; } h1 em, h2 em { color: var(--coral); font-style: italic; }
@@ -57,6 +59,8 @@ h1, h2 { font-size: clamp(55px, 7vw, 95px); font-weight: 400; letter-spacing: -3
 .whatsapp-fab:hover { background: #146b49; transform: translateY(-3px); }
 .whatsapp-fab span { transform: rotate(-18deg); }
 @media (max-width: 760px) { .whatsapp-fab { bottom: 18px; height: 52px; right: 18px; width: 52px; } }
+.how-page { background: var(--cream); }.how-intro { background: var(--sage); padding: 115px 32px 125px; text-align: center; }.how-intro h1 { font-size: clamp(55px, 8vw, 91px); }.how-intro > p:last-child { color: var(--muted); font-size: 18px; line-height: 1.5; margin: 29px auto 0; max-width: 470px; }.how-steps { margin: auto; max-width: 980px; padding: 95px 32px 110px; }.how-step { border-top: 1px solid #d4dbd3; display: grid; gap: 80px; grid-template-columns: 65px 1fr; padding: 36px 0 55px; }.how-step > span { color: var(--coral); font-family: sans-serif; font-size: 11px; }.how-step h2 { font-size: 48px; }.how-step p:not(.eyebrow) { color: var(--muted); font-size: 16px; line-height: 1.55; margin: 23px 0 0; max-width: 470px; }.how-trust { background: #f0c0ae; display: grid; gap: 100px; grid-template-columns: 1fr 1fr; padding: 100px max(32px, calc((100% - 980px) / 2)); }.how-trust h2 { font-size: 57px; }.how-trust > div:last-child { padding-top: 32px; }.how-trust > div:last-child > p { color: #5d635a; font-size: 17px; line-height: 1.55; margin: 0 0 30px; max-width: 410px; }
+@media (max-width: 760px) { .site-nav { margin: 12px 14px; padding: 9px 11px 9px 15px; }.site-nav .brand { font-size: 18px; }.site-nav .provider-link { font-size: 10px; padding: 9px 11px; }.how-intro { padding: 78px 20px 85px; }.how-intro h1 { font-size: 55px; }.how-intro > p:last-child { font-size: 16px; }.how-steps { padding: 65px 20px 75px; }.how-step { gap: 17px; grid-template-columns: 35px 1fr; padding: 27px 0 42px; }.how-step h2 { font-size: 39px; }.how-step p:not(.eyebrow) { font-size: 15px; }.how-trust { display: block; padding: 72px 20px 80px; }.how-trust h2 { font-size: 48px; }.how-trust > div:last-child { padding-top: 36px; }.how-trust > div:last-child > p { font-size: 16px; } }
 .account-flip-card { display: block; min-height: 500px; perspective: 1400px; }
 .account-flip-inner { height: 100%; min-height: 500px; position: relative; transform-style: preserve-3d; }
 .account-form-face, .account-side-face { backface-visibility: hidden; position: absolute; }
